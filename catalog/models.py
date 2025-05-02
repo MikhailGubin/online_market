@@ -51,12 +51,17 @@ class Product(models.Model):
         null=True,
         related_name="products",
     )
-    purchase_price = models.FloatField(
+    price = models.FloatField(
         verbose_name="Стоимость продукта", help_text="Введите стоимость продукта"
     )
-    created_at = models.DateTimeField(verbose_name="Дата регистрации продукта")
+    created_at = models.DateTimeField(
+        verbose_name="Дата регистрации продукта",
+        blank=True,
+        null=True,)
     updated_at = models.DateTimeField(
-        verbose_name="Дата последнего изменения информации о продукте"
+        verbose_name="Дата последнего изменения информации о продукте",
+        blank=True,
+        null=True,
     )
 
     def __str__(self):
@@ -65,4 +70,4 @@ class Product(models.Model):
     class Meta:
         verbose_name = "продукт"
         verbose_name_plural = "продукты"
-        ordering = ["name", "category", "created_at", "updated_at"]
+        ordering = ["name", "category", "price", "created_at", "updated_at"]
