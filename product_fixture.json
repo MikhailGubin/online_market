@@ -1,0 +1,28 @@
+[
+{
+    "model": "catalog.product",
+    "pk": 4,
+    "fields": {
+        "name": "Iphone 15",
+        "description": "512GB, Черный цвет, 48+12MP камера",
+        "product_image": "C:/Users/Gubin's/Pictures/iphone_15",
+        "category": 1,
+        "price": 120000.0,
+        "created_at": null,
+        "updated_at": null
+    }
+},
+{
+    "model": "catalog.product",
+    "pk": 5,
+    "fields": {
+        "name": "Samsung QE65QN85DBUXRU",
+        "description": "Диагональ 65\", разрешение экрана 4K UltraHD, 3840x2160",
+        "product_image": "",
+        "category": 2,
+        "price": 135999.0,
+        "created_at": null,
+        "updated_at": null
+    }
+}
+]
