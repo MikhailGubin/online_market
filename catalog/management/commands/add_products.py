@@ -1,6 +1,10 @@
+import os
+
 from django.core.management.base import BaseCommand
 from django.core.management import call_command
 from catalog.models import Category, Product
+from config.settings import BASE_DIR
+
 
 class Command(BaseCommand):
     help = 'Загружает тестовые продукты в базу данных из фикстуры'
@@ -32,9 +36,16 @@ class Command(BaseCommand):
         #     {
         #         "name": "Iphone 15",
         #         "description": "512GB, Черный цвет, 48+12MP камера",
-        #         "product_image": "C:/Users/Gubin's/Pictures/iphone_15",
+        #         "product_image": os.path.join(BASE_DIR, 'static/images/iphone_15.jpg'),
         #         "category": category_1,
         #         "price": 120000.0,
+        #     },
+        #     {
+        #         "name": "Samsung Galaxy S23 Ultra",
+        #         "description": "256GB, Серый цвет, 200MP камера",
+        #         "product_image": os.path.join(BASE_DIR, 'static/images/galaxy_s23.jpg'),
+        #         "category": category_1,
+        #         "price": 96999.0,
         #     },
         #     {
         #         "name": "Samsung QE65QN85DBUXRU",
