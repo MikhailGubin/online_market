@@ -1,13 +1,14 @@
 import os
 
-from django.core.management.base import BaseCommand
 from django.core.management import call_command
+from django.core.management.base import BaseCommand
+
 from catalog.models import Category, Product
 from config.settings import BASE_DIR
 
 
 class Command(BaseCommand):
-    help = 'Загружает тестовые продукты в базу данных из фикстуры'
+    help = "Загружает тестовые продукты в базу данных из фикстуры"
 
     def handle(self, *args, **kwargs):
 
@@ -15,11 +16,15 @@ class Command(BaseCommand):
         Product.objects.all().delete()
         Category.objects.all().delete()
 
-        call_command('loaddata', 'category_fixture.json')
-        self.stdout.write(self.style.SUCCESS('Successfully loaded data from category_fixture.json'))
+        call_command("loaddata", "category_fixture.json")
+        self.stdout.write(
+            self.style.SUCCESS("Successfully loaded data from category_fixture.json")
+        )
 
-        call_command('loaddata', 'product_fixture.json')
-        self.stdout.write(self.style.SUCCESS('Successfully loaded data from product_fixture.json'))
+        call_command("loaddata", "product_fixture.json")
+        self.stdout.write(
+            self.style.SUCCESS("Successfully loaded data from product_fixture.json")
+        )
 
         # category_1, _ = Category.objects.get_or_create(
         #     name='Смартфоны',

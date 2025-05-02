@@ -57,7 +57,8 @@ class Product(models.Model):
     created_at = models.DateTimeField(
         verbose_name="Дата регистрации продукта",
         blank=True,
-        null=True,)
+        null=True,
+    )
     updated_at = models.DateTimeField(
         verbose_name="Дата последнего изменения информации о продукте",
         blank=True,
