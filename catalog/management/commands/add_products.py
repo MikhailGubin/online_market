@@ -41,7 +41,7 @@ class Command(BaseCommand):
         #     {
         #         "name": "Iphone 15",
         #         "description": "512GB, Черный цвет, 48+12MP камера",
-        #         "product_image": os.path.join(BASE_DIR, 'static/images/iphone_15.jpg'),
+        #         "product_image": os.path.join(BASE_DIR, 'static/images/iphone_15.jpg,
         #         "category": category_1,
         #         "price": 120000.0,
         #     },
