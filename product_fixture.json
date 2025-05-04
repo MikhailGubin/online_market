@@ -1,0 +1,41 @@
+[
+{
+    "model": "catalog.product",
+    "pk": 1,
+    "fields": {
+        "name": "Samsung Galaxy S23 Ultra",
+        "description": "256GB, Серый цвет, 200MP камера",
+        "product_image": "static/images/galaxy_s23.jpg",
+        "category": 1,
+        "price": 96999.0,
+        "created_at": "2025-05-04T14:17:35.418Z",
+        "updated_at": "2025-05-04T14:17:35.418Z"
+    }
+},
+{
+    "model": "catalog.product",
+    "pk": 2,
+    "fields": {
+        "name": "Iphone 15",
+        "description": "512GB, Черный цвет, 48+12MP камера",
+        "product_image": "static/images/iphone_15.jpg",
+        "category": 1,
+        "price": 116199.0,
+        "created_at": "2025-05-04T14:17:52.959Z",
+        "updated_at": "2025-05-04T14:17:52.959Z"
+    }
+},
+{
+    "model": "catalog.product",
+    "pk": 3,
+    "fields": {
+        "name": "Samsung QE65QN85DBUXRU",
+        "description": "Диагональ 65\", разрешение экрана 4K UltraHD, 3840x2160",
+        "product_image": "",
+        "category": 2,
+        "price": 135999.0,
+        "created_at": "2025-05-04T14:17:06.863Z",
+        "updated_at": "2025-05-04T14:17:06.863Z"
+    }
+}
+]
