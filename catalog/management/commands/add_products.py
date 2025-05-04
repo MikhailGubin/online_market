@@ -25,7 +25,8 @@ class Command(BaseCommand):
         self.stdout.write(
             self.style.SUCCESS("Successfully loaded data from product_fixture.json")
         )
-
+        #
+        #
         # category_1, _ = Category.objects.get_or_create(
         #     name='Смартфоны',
         #     description="Смартфоны, как средство не только коммуникации, "
@@ -41,9 +42,9 @@ class Command(BaseCommand):
         #     {
         #         "name": "Iphone 15",
         #         "description": "512GB, Черный цвет, 48+12MP камера",
-        #         "product_image": os.path.join(BASE_DIR, 'static/images/iphone_15.jpg,
-        #         "category": category_1,
-        #         "price": 120000.0,
+        #         "product_image": os.path.join(BASE_DIR, "static/images/iphone_15.jpg",
+        #         "price": 120000,
+        #         "category": category_1
         #     },
         #     {
         #         "name": "Samsung Galaxy S23 Ultra",

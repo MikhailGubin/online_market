@@ -44,25 +44,21 @@ class Product(models.Model):
     )
     category = models.ForeignKey(
         Category,
-        on_delete=models.SET_NULL,
+        on_delete=models.CASCADE,
         verbose_name="Категория продукта",
         help_text="Введите категорию продукта",
-        blank=True,
-        null=True,
         related_name="products",
     )
     price = models.FloatField(
         verbose_name="Стоимость продукта", help_text="Введите стоимость продукта"
     )
     created_at = models.DateTimeField(
+        auto_now_add=True,
         verbose_name="Дата регистрации продукта",
-        blank=True,
-        null=True,
     )
     updated_at = models.DateTimeField(
+        auto_now=True,
         verbose_name="Дата последнего изменения информации о продукте",
-        blank=True,
-        null=True,
     )
 
     def __str__(self):
