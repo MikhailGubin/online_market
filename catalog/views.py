@@ -24,3 +24,7 @@ def feedback_form(request):
         print(f"Получено новое сообщение от {name} ({phone}): \n{message}")
         return redirect("/")
     return render(request, "contacts.html")
+
+def index(request):
+    return render(request, "base.html")
+
