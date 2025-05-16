@@ -1,6 +1,6 @@
 from django.http import HttpResponse
 from django.shortcuts import get_object_or_404, redirect, render
-
+from django.views.generic import ListView
 from catalog.models import Product
 
 
@@ -26,6 +26,11 @@ def feedback_form(request):
         print(f"Получено новое сообщение от {name} ({phone}): \n{message}")
         return redirect("/")
     return render(request, "contacts.html")
+
+
+class ProductListView(ListView):
+    """ Класс для представления объектов класса 'Продукт' """
+    model = Product
 
 
 def products_list(request):
