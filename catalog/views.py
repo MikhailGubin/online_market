@@ -1,6 +1,7 @@
 from django.http import HttpResponse
 from django.shortcuts import get_object_or_404, redirect, render
-from django.views.generic import ListView
+from django.views.generic import ListView, DetailView
+from django.views.generic.edit import CreateView
 from catalog.models import Product
 
 
@@ -10,12 +11,12 @@ def home(request):
 
 
 def contacts(request):
-    """Контроллер для страницы 'Контакты'"""
+    """Контроллер для страницы 'Contacts'"""
     return render(request, "contacts.html")
 
 
 def feedback_form(request):
-    """Контроллер для обработки обратной связи со страницы 'Контакты'"""
+    """Контроллер для обработки обратной связи со страницы 'Contacts'"""
 
     if request.method == "POST":
         # Получение данных из формы
@@ -29,19 +30,23 @@ def feedback_form(request):
 
 
 class ProductListView(ListView):
-    """ Класс для представления объектов класса 'Продукт' """
+    """ Класс для представления объектов класса 'Product' """
     model = Product
 
 
-def products_list(request):
-    """Контроллер для отображения всех продуктов на страницу 'Главная'"""
-    products = Product.objects.all()
-    context = {"products": products}
-    return render(request, "products_list.html", context)
+# def products_list(request):
+#     """Контроллер для отображения всех продуктов на страницу 'Главная'"""
+#     products = Product.objects.all()
+#     context = {"products": products}
+#     return render(request, "products_list.html", context)
 
 
-def product_detail(request, pk):
-    """Контроллер для отображения всей информации по одному продукту на странице 'Информация о товаре'"""
-    product = get_object_or_404(Product, pk=pk)
-    context = {"product": product}
-    return render(request, "product_detail.html", context)
+class ProductDetailView(DetailView):
+    """ Выводит представление отдельного объекта класса 'Product' """
+    model = Product
+
+# def product_detail(request, pk):
+#     """Контроллер для отображения всей информации по одному продукту на странице 'Информация о товаре'"""
+#     product = get_object_or_404(Product, pk=pk)
+#     context = {"product": product}
+#     return render(request, "product_detail.html", context)
