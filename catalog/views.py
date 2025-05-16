@@ -1,6 +1,6 @@
 from django.http import HttpResponse
 from django.shortcuts import get_object_or_404, redirect, render
-from django.views.generic import ListView, DetailView
+from django.views.generic import ListView, DetailView, TemplateView
 from django.views.generic.edit import CreateView
 from catalog.models import Product
 
@@ -10,23 +10,27 @@ def home(request):
     return render(request, "home.html")
 
 
-def contacts(request):
-    """Контроллер для страницы 'Contacts'"""
-    return render(request, "contacts.html")
+class ContactsView(TemplateView):
+    template_name = 'catalog/contacts.html'
 
 
-def feedback_form(request):
-    """Контроллер для обработки обратной связи со страницы 'Contacts'"""
+# def contacts(request):
+#     """Контроллер для страницы 'Contacts'"""
+#     return render(request, "contacts.html")
 
-    if request.method == "POST":
-        # Получение данных из формы
-        name = request.POST.get("name")
-        phone = request.POST.get("phone")
-        message = request.POST.get("message")
-        # Обработка данных
-        print(f"Получено новое сообщение от {name} ({phone}): \n{message}")
-        return redirect("/")
-    return render(request, "contacts.html")
+
+# def feedback_form(request):
+#     """Контроллер для обработки обратной связи со страницы 'Contacts'"""
+#
+#     if request.method == "POST":
+#         # Получение данных из формы
+#         name = request.POST.get("name")
+#         phone = request.POST.get("phone")
+#         message = request.POST.get("message")
+#         # Обработка данных
+#         print(f"Получено новое сообщение от {name} ({phone}): \n{message}")
+#         return redirect("/")
+#     return render(request, "contacts.html")
 
 
 class ProductListView(ListView):
