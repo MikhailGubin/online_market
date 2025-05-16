@@ -5,11 +5,9 @@ class Blog(models.Model):
     title = models.CharField(
         max_length=150,
         verbose_name="Название блога",
-        help_text="Введите название блога",
     )
     content = models.TextField(
         verbose_name="Содержание блога",
-        help_text="Введите содержание блога",
         blank=True,
         null=True,
     )
@@ -18,7 +16,6 @@ class Blog(models.Model):
         blank=True,
         null=True,
         verbose_name="Изображение для блога",
-        help_text="Загрузите изображение для блога",
     )
     publication_sign = models.BooleanField(
         default=False,

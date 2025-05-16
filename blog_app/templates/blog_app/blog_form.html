@@ -1,0 +1,23 @@
+{% extends 'blog_app/base.html' %}
+
+{% block title %}Создание блога {% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <form class="row" method="post" enctype="multipart/form-data" action="">
+                <div class="card">
+                    <div class="card-body">
+                        {% csrf_token %}
+                        {{form.as_p}}
+                        <div>
+                            <button type="submit" class="btn btn-primary"> Создать</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

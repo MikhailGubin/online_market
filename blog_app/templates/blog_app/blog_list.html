@@ -16,7 +16,7 @@
                           <p class="card-text">Содержание: {{blog.content|truncatechars:37}}</p>
                             <div class="d-flex justify-content-between align-items-center">
                                 <div class="btn-group">
-                                    <a class="btn btn-outline-primary" href="{% url 'catalog:product_detail' product.pk %}" role="button"> Подробнее </a>
+                                    <a class="btn btn-outline-primary" href="{% url 'blog_app:blog_detail' product.pk %}" role="button"> Подробнее </a>
                         </div>
                     </div>
                 </div>
