@@ -13,3 +13,6 @@ class BlogListView(ListView):
 class BlogDetailView(DetailView):
     """ Выводит представление отдельного объекта класса 'Product' """
     model = Blog
+
+
+

@@ -10,7 +10,7 @@ app_name = BlogAppConfig.name
 
 urlpatterns = [
     path("", BlogListView.as_view(), name="products_list"),
-    path("catalog/<int:pk>/", BlogDetailView.as_view(), name="product_detail"),
+    path("/<int:pk>/", BlogDetailView.as_view(), name="product_detail"),
 ]
 
 if settings.DEBUG:
