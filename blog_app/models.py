@@ -35,6 +35,6 @@ class Blog(models.Model):
         return f"Название блога '{self.title}'"
 
     class Meta:
-        verbose_name = "продукт"
-        verbose_name_plural = "продукты"
+        verbose_name = "статья"
+        verbose_name_plural = "статьи"
         ordering = ["title", "publication_sign", "created_at", "views_counter"]
