@@ -12,10 +12,17 @@
                     <img src="{{ blog.preview | media_filter }}" height="275" width="100%">
                     <div class="card-body">
                         <p class="card-text">Название блога: {{blog.title}}</p>
-                        <p class="card-text">Опубликовано: {{blog.publication_sign}}</p>
-                        <p class="card-text">Содержание: {{blog.content}}</p>
+                        <p class="card-text">
+                            Опубликовано:
+                            {% if blog.publication_sign %}
+                            Да
+                            {% else %}
+                            Нет
+                            {% endif %}
+                        </p>
+                        <p class="card-text" >Содержание: {{blog.content | linebreaks }}</p>
                         <p class="card-text">Дата создания: {{blog.created_at|date:"H:i:s d M Y"}}</p>
-                        <p class="card-text">Количество просмотров: {{blog.views_number}}</p>
+                        <p class="card-text">Количество просмотров: {{blog.views_counter}}</p>
                         <div class="d-flex justify-content-between align-items-center">
                             <div class="btn-group">
                                 <a class="btn btn-outline-secondary" href="{% url 'blog_app:blog_edit' blog.pk %}"

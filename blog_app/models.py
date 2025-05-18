@@ -3,7 +3,7 @@ from django.db import models
 
 class Blog(models.Model):
     title = models.CharField(
-        max_length=150,
+        max_length=250,
         verbose_name="Название блога",
     )
     content = models.TextField(
@@ -25,8 +25,8 @@ class Blog(models.Model):
         auto_now_add=True,
         verbose_name="Дата создания блога",
     )
-    views_number = models.IntegerField(
-        verbose_name="Количество просмотров",
+    views_counter = models.PositiveIntegerField(
+        verbose_name="Счётчик просмотров",
         default=0,
         blank=True,
     )
@@ -37,4 +37,4 @@ class Blog(models.Model):
     class Meta:
         verbose_name = "продукт"
         verbose_name_plural = "продукты"
-        ordering = ["title", "publication_sign", "created_at", "views_number"]
+        ordering = ["title", "publication_sign", "created_at", "views_counter"]
