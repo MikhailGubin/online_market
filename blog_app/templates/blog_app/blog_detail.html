@@ -1,7 +1,7 @@
 {% extends 'blog_app/base.html' %}
-{% load my_tags %}
+{% load blog_tags %}
 
-{% block title %}Информация о товаре{% endblock %}
+{% block title %}Информация о блоге{% endblock %}
 
 {% block content %}
 <div class="album py-5 bg-body-tertiary">
@@ -9,15 +9,17 @@
         <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
             <div class="col">
                 <div class="card shadow-sm">
-                    <img src="{{ object.preview | media_filter }}" height="275" width="100%">
+                    <img src="{{ blog.preview | media_filter }}" height="275" width="100%">
                     <div class="card-body">
-                        <p class="card-text">Название блога: {{object.title}}</p>
-                        <p class="card-text">Опубликовано: {{object.publication_sign}}</p>
-                        <p class="card-text">Содержание: {{object.content}}</p>
-                        <p class="card-text">Дата создания: {{object.created_at|date:"H:i:s d M Y"}}</p>
-                        <p class="card-text">Количество просмотров: {{object.views_number}}</p>
+                        <p class="card-text">Название блога: {{blog.title}}</p>
+                        <p class="card-text">Опубликовано: {{blog.publication_sign}}</p>
+                        <p class="card-text">Содержание: {{blog.content}}</p>
+                        <p class="card-text">Дата создания: {{blog.created_at|date:"H:i:s d M Y"}}</p>
+                        <p class="card-text">Количество просмотров: {{blog.views_number}}</p>
                         <div class="d-flex justify-content-between align-items-center">
                             <div class="btn-group">
+                                <a class="btn btn-outline-secondary" href="{% url 'blog_app:blog_edit' blog.pk %}"
+                                   role="button"> Редактировать </a>
                                 <a class="btn btn-outline-primary" href="{% url 'blog_app:blog_list' %}"
                                    role="button"> Назад </a>
                             </div>
