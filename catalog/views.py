@@ -1,7 +1,8 @@
 from django.http import HttpResponse
 from django.shortcuts import get_object_or_404, redirect, render
-from django.views.generic import ListView, DetailView, TemplateView
+from django.views.generic import DetailView, ListView, TemplateView
 from django.views.generic.edit import CreateView
+
 from catalog.models import Product
 
 
@@ -11,7 +12,7 @@ def home(request):
 
 
 class ContactsView(TemplateView):
-    template_name = 'catalog/contacts.html'
+    template_name = "catalog/contacts.html"
 
 
 # def contacts(request):
@@ -34,7 +35,8 @@ class ContactsView(TemplateView):
 
 
 class ProductListView(ListView):
-    """ Класс для представления объектов класса 'Product' """
+    """Класс для представления объектов класса 'Product'"""
+
     model = Product
 
 
@@ -46,8 +48,10 @@ class ProductListView(ListView):
 
 
 class ProductDetailView(DetailView):
-    """ Выводит представление отдельного объекта класса 'Product' """
+    """Выводит представление отдельного объекта класса 'Product'"""
+
     model = Product
+
 
 # def product_detail(request, pk):
 #     """Контроллер для отображения всей информации по одному продукту на странице 'Информация о товаре'"""
