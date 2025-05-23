@@ -1,0 +1,31 @@
+{% extends 'blog_app/base.html' %}
+
+{% block title %}Создание блога{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <form class="row" method="post" enctype="multipart/form-data" action="">
+                <div class="card">
+                    <div class="card-body">
+                        {% csrf_token %}
+                        {{form.as_p}}
+                        <div>
+                            <button type="submit" class="btn btn-primary">
+                                {% if object %}
+                                Сохранить
+                                {% else %}
+                                Создать
+                                {% endif %}
+                            </button>
+                            <a class="btn btn-outline-secondary" href="{% url 'blog_app:blog_list' %}"
+                               role="button"> Назад </a>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
