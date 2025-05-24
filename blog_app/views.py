@@ -2,6 +2,7 @@ from django.urls import reverse, reverse_lazy
 from django.views.generic import DetailView, ListView
 from django.views.generic.edit import CreateView, DeleteView, UpdateView
 
+from blog_app.forms import BlogForm
 from blog_app.models import Blog
 
 
@@ -23,7 +24,7 @@ class BlogDetailView(DetailView):
     context_object_name = "blog"
 
     def get_object(self, queryset=None):
-        """  Добавляет количество просмотров к полю 'views_counter' """
+        """Добавляет количество просмотров к полю 'views_counter'"""
         self.blog = super().get_object(queryset)
         self.blog.views_counter += 1
         self.blog.save()
@@ -34,7 +35,7 @@ class BlogCreateView(CreateView):
     """Создаёт представление объекта класса 'Blog'"""
 
     model = Blog
-    fields = ("title", "content", "preview", "publication_sign", "views_counter")
+    form_class = BlogForm
     success_url = reverse_lazy("blog_app:blog_list")
 
 
@@ -42,11 +43,11 @@ class BlogUpdateView(UpdateView):
     """Создаёт представление объекта класса 'Blog'"""
 
     model = Blog
-    fields = ("title", "content", "preview", "publication_sign", "views_counter")
+    form_class = BlogForm
     success_url = reverse_lazy("blog_app:blog_list")
 
     def get_success_url(self):
-        """ Перенаправлять пользователя на просмотр этой статьи после успешного редактирования записи """
+        """Перенаправлять пользователя на просмотр этой статьи после успешного редактирования записи"""
         return reverse("blog_app:blog_detail", args=[self.kwargs.get("pk")])
 
 

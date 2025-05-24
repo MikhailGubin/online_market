@@ -7,7 +7,6 @@ from django.views.generic.edit import CreateView, DeleteView, UpdateView
 from catalog.forms import ProductForm
 from catalog.models import Product
 
-
 # def home(request):
 #     """Контроллер для главной страницы"""
 #     return render(request, "home.html")
@@ -66,14 +65,14 @@ class ProductDetailView(DetailView):
 
     model = Product
     context_object_name = "product"
-    
+
     def get_object(self, queryset=None):
-        """  Добавляет количество просмотров к полю 'views_counter' """
+        """Добавляет количество просмотров к полю 'views_counter'"""
         self.product = super().get_object(queryset)
         self.product.views_counter += 1
         self.product.save()
         return self.product
-    
+
 
 class ProductUpdateView(UpdateView):
     """Создаёт представление объекта класса 'Product'"""
@@ -83,8 +82,8 @@ class ProductUpdateView(UpdateView):
     success_url = reverse_lazy("catalog:products_list")
 
     def get_success_url(self):
-        """ 
-        Перенаправлять пользователя на просмотр этого товара после успешного редактирования информации этого товара 
+        """
+        Перенаправлять пользователя на просмотр этого товара после успешного редактирования информации этого товара
         """
         return reverse("catalog:product_detail", args=[self.kwargs.get("pk")])
 
@@ -98,4 +97,5 @@ class ProductDeleteView(DeleteView):
 
 class ContactsView(TemplateView):
     """Контроллер для отображения страницы 'Contacts'"""
+
     template_name = "catalog/contacts.html"
