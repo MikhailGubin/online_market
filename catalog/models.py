@@ -60,6 +60,11 @@ class Product(models.Model):
         auto_now=True,
         verbose_name="Дата последнего изменения информации о продукте",
     )
+    views_counter = models.PositiveIntegerField(
+        verbose_name="Счётчик просмотров",
+        default=0,
+        blank=True,
+    )
 
     def __str__(self):
         return f"{self.name} из категории {self.category}"
@@ -67,4 +72,4 @@ class Product(models.Model):
     class Meta:
         verbose_name = "продукт"
         verbose_name_plural = "продукты"
-        ordering = ["name", "category", "price", "created_at", "updated_at"]
+        ordering = ["name", "category", "price", "created_at", "updated_at", "views_counter"]
