@@ -3,8 +3,13 @@ from django.conf.urls.static import static
 from django.urls import path
 
 from blog_app.apps import BlogAppConfig
-from blog_app.views import (BlogCreateView, BlogDeleteView, BlogDetailView,
-                            BlogListView, BlogUpdateView)
+from blog_app.views import (
+    BlogCreateView,
+    BlogDeleteView,
+    BlogDetailView,
+    BlogListView,
+    BlogUpdateView,
+)
 
 app_name = BlogAppConfig.name
 

@@ -1,10 +1,4 @@
-from django.core.exceptions import ValidationError
 from django.db import models
-
-
-def validate_price(value):
-    if value < 0:
-        raise ValidationError("Цена продукта не может быть отрицательной")
 
 
 class Category(models.Model):
@@ -58,7 +52,6 @@ class Product(models.Model):
     price = models.FloatField(
         verbose_name="Стоимость продукта",
         help_text="Введите стоимость продукта",
-        validators=[validate_price],
     )
     created_at = models.DateTimeField(
         auto_now_add=True,
