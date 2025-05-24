@@ -1,8 +1,10 @@
 from django.http import HttpResponse
 from django.shortcuts import get_object_or_404, redirect, render
+from django.urls import reverse, reverse_lazy
 from django.views.generic import DetailView, ListView, TemplateView
-from django.views.generic.edit import CreateView
+from django.views.generic.edit import CreateView, DeleteView, UpdateView
 
+from catalog.forms import ProductForm
 from catalog.models import Product
 
 
@@ -34,12 +36,6 @@ class ContactsView(TemplateView):
 #     return render(request, "contacts.html")
 
 
-class ProductListView(ListView):
-    """Класс для представления объектов класса 'Product'"""
-
-    model = Product
-
-
 # def products_list(request):
 #     """Контроллер для отображения всех продуктов на страницу 'Главная'"""
 #     products = Product.objects.all()
@@ -47,14 +43,48 @@ class ProductListView(ListView):
 #     return render(request, "products_list.html", context)
 
 
-class ProductDetailView(DetailView):
-    """Выводит представление отдельного объекта класса 'Product'"""
-
-    model = Product
-
-
 # def product_detail(request, pk):
 #     """Контроллер для отображения всей информации по одному продукту на странице 'Информация о товаре'"""
 #     product = get_object_or_404(Product, pk=pk)
 #     context = {"product": product}
 #     return render(request, "product_detail.html", context)
+
+
+class ProductCreateView(CreateView):
+    """Создаёт представление объекта класса 'Product'"""
+
+    model = Product
+    form_class = ProductForm
+    success_url = reverse_lazy("catalog:products_list")
+
+
+class ProductListView(ListView):
+    """Класс для представления объектов класса 'Product'"""
+
+    model = Product
+    context_object_name = "products"
+
+
+class ProductDetailView(DetailView):
+    """Выводит представление отдельного объекта класса 'Product'"""
+
+    model = Product
+    context_object_name = "product"
+
+
+class ProductUpdateView(UpdateView):
+    """Создаёт представление объекта класса 'Product'"""
+
+    model = Product
+    form_class = ProductForm
+    success_url = reverse_lazy("catalog:products_list")
+
+    def get_success_url(self):
+        return reverse("catalog:product_detail", args=[self.kwargs.get("pk")])
+
+
+class ProductDeleteView(DeleteView):
+    """Создаёт представление объекта класса 'Product'"""
+
+    model = Product
+    success_url = reverse_lazy("catalog:products_list")
