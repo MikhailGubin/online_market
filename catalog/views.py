@@ -1,18 +1,15 @@
 from django.http import HttpResponse
 from django.shortcuts import get_object_or_404, redirect, render
+from django.urls import reverse, reverse_lazy
 from django.views.generic import DetailView, ListView, TemplateView
-from django.views.generic.edit import CreateView
+from django.views.generic.edit import CreateView, DeleteView, UpdateView
 
+from catalog.forms import ProductForm
 from catalog.models import Product
 
-
-def home(request):
-    """Контроллер для главной страницы"""
-    return render(request, "home.html")
-
-
-class ContactsView(TemplateView):
-    template_name = "catalog/contacts.html"
+# def home(request):
+#     """Контроллер для главной страницы"""
+#     return render(request, "home.html")
 
 
 # def contacts(request):
@@ -34,12 +31,6 @@ class ContactsView(TemplateView):
 #     return render(request, "contacts.html")
 
 
-class ProductListView(ListView):
-    """Класс для представления объектов класса 'Product'"""
-
-    model = Product
-
-
 # def products_list(request):
 #     """Контроллер для отображения всех продуктов на страницу 'Главная'"""
 #     products = Product.objects.all()
@@ -47,14 +38,64 @@ class ProductListView(ListView):
 #     return render(request, "products_list.html", context)
 
 
-class ProductDetailView(DetailView):
-    """Выводит представление отдельного объекта класса 'Product'"""
-
-    model = Product
-
-
 # def product_detail(request, pk):
 #     """Контроллер для отображения всей информации по одному продукту на странице 'Информация о товаре'"""
 #     product = get_object_or_404(Product, pk=pk)
 #     context = {"product": product}
 #     return render(request, "product_detail.html", context)
+
+
+class ProductCreateView(CreateView):
+    """Создаёт представление объекта класса 'Product'"""
+
+    model = Product
+    form_class = ProductForm
+    success_url = reverse_lazy("catalog:products_list")
+
+
+class ProductListView(ListView):
+    """Класс для представления объектов класса 'Product'"""
+
+    model = Product
+    context_object_name = "products"
+
+
+class ProductDetailView(DetailView):
+    """Выводит представление отдельного объекта класса 'Product'"""
+
+    model = Product
+    context_object_name = "product"
+
+    def get_object(self, queryset=None):
+        """Добавляет количество просмотров к полю 'views_counter'"""
+        self.product = super().get_object(queryset)
+        self.product.views_counter += 1
+        self.product.save()
+        return self.product
+
+
+class ProductUpdateView(UpdateView):
+    """Создаёт представление объекта класса 'Product'"""
+
+    model = Product
+    form_class = ProductForm
+    success_url = reverse_lazy("catalog:products_list")
+
+    def get_success_url(self):
+        """
+        Перенаправлять пользователя на просмотр этого товара после успешного редактирования информации этого товара
+        """
+        return reverse("catalog:product_detail", args=[self.kwargs.get("pk")])
+
+
+class ProductDeleteView(DeleteView):
+    """Создаёт представление объекта класса 'Product'"""
+
+    model = Product
+    success_url = reverse_lazy("catalog:products_list")
+
+
+class ContactsView(TemplateView):
+    """Контроллер для отображения страницы 'Contacts'"""
+
+    template_name = "catalog/contacts.html"
