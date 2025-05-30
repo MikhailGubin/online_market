@@ -1,9 +1,9 @@
 import os
 
 from django.core.management import BaseCommand
+from dotenv import load_dotenv
 
 from users.models import User
-from dotenv import load_dotenv
 
 # Загружаем переменные окружения из файла .env
 load_dotenv()
