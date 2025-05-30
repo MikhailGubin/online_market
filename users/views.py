@@ -23,8 +23,9 @@ class UserCreateView(CreateView):
         host = self.request.get_host()
         url = f'http://{host}/users/email-confirm/{token}/'
         send_mail(
-            subject='Подтверждение почты',
-            message=f'Для подтверждения почты необходимо пройти по ссылке {url}',
+            subject='Добро пожаловать в наш сервис',
+            message=f'Спасибо, что зарегистрировались в нашем сервисе! '
+                    f'Для подтверждения почты необходимо пройти по ссылке {url}',
             from_email= EMAIL_HOST_USER,
             recipient_list=[user.email]
         )
