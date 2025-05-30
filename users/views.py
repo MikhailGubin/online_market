@@ -31,15 +31,7 @@ class UserCreateView(CreateView):
         return super().form_valid(form)
 
 def email_verification(request, token):
-    user = get_object_or_404(token=token)
+    user = get_object_or_404(User, token=token)
     user.is_active = True
+    user.save()
     return redirect(reverse('users:login'))
-    #     login(self.request, user)
-    #     self.send_welcome_email(user.email)
-    #     return super().form_valid(form)
-    #
-    # def send_welcome_email(self, user_email):
-    #     subject = 'Добро пожаловать в наш сервис'
-    #     message = 'Спасибо, что зарегистрировались в нашем сервисе!'
-    #     recipient_list = [user_email]
-    #     send_mail(subject, message, from_email, recipient_list)
