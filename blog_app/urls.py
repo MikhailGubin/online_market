@@ -20,6 +20,3 @@ urlpatterns = [
     path("<int:pk>/edit/", BlogUpdateView.as_view(), name="blog_edit"),
     path("<int:pk>/delete/", BlogDeleteView.as_view(), name="blog_delete"),
 ]
-
-if settings.DEBUG:
-    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

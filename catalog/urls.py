@@ -24,6 +24,3 @@ urlpatterns = [
     path("<int:pk>/edit/", ProductUpdateView.as_view(), name="product_edit"),
     path("<int:pk>/delete/", ProductDeleteView.as_view(), name="product_delete"),
 ]
-
-if settings.DEBUG:
-    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
