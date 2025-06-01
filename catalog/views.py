@@ -54,12 +54,23 @@ class ProductCreateView(LoginRequiredMixin, CreateView):
     form_class = ProductForm
     success_url = reverse_lazy("catalog:products_list")
 
+    def form_valid(self, form):
+        product = form.save()
+        user = self.request.user
+        product.owner = user
+        product.save()
+        return super().form_valid(form)
+
 
 class ProductListView(ListView):
     """Класс для представления объектов класса 'Product'"""
 
     model = Product
     context_object_name = "products"
+
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        return queryset.filter(publish_product=True)
 
 
 class ProductDetailView(LoginRequiredMixin, DetailView):

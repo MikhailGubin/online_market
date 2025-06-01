@@ -20,6 +20,9 @@
                                 <a class="btn btn-outline-primary btn-sm"
                                    href="{% url 'catalog:product_detail' product.pk %}"
                                    role="button"> Подробнее </a>
+                                {% endif %}
+
+                                {% if perms.catalog.can_unpublish_product and perms.catalog.can_delete_any_product or user == product.owner %}
                                 <a class="btn btn-outline-secondary btn-sm"
                                    href="{% url 'catalog:product_edit' product.pk %}"
                                    role="button"> Редактировать </a>
