@@ -66,6 +66,10 @@ class Product(models.Model):
         default=0,
         blank=True,
     )
+    can_unpublish_product = models.BooleanField(
+        default=False,
+        blank=True,
+    )
 
     def __str__(self):
         return f"{self.name} из категории {self.category}"
@@ -80,4 +84,8 @@ class Product(models.Model):
             "created_at",
             "updated_at",
             "views_counter",
+        ]
+        permissions = [
+            ("can_unpublish_product", "Can unpublish product"),
+            ("can_delete_any_product", "Can delete any product"),
         ]

@@ -1,11 +1,12 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.core.exceptions import PermissionDenied
 from django.http import HttpResponse
 from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse, reverse_lazy
 from django.views.generic import DetailView, ListView, TemplateView
 from django.views.generic.edit import CreateView, DeleteView, UpdateView
 
-from catalog.forms import ProductForm
+from catalog.forms import ProductForm, ProductModeratorForm
 from catalog.models import Product
 
 # def home(request):
@@ -87,6 +88,16 @@ class ProductUpdateView(LoginRequiredMixin, UpdateView):
         Перенаправлять пользователя на просмотр этого товара после успешного редактирования информации этого товара
         """
         return reverse("catalog:product_detail", args=[self.kwargs.get("pk")])
+
+    def get_form_class(self):
+        user = self.request.user
+        if user == self.object.owner:
+            return ProductForm
+
+        if user.has_perm("catalog.can_unpublish_product") and user.has_perm("catalog.can_delete_any_product"):
+            return ProductModeratorForm
+
+        raise PermissionDenied
 
 
 class ProductDeleteView(LoginRequiredMixin, DeleteView):

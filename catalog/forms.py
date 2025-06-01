@@ -38,3 +38,11 @@ class ProductForm(StyleFormMixin, forms.ModelForm):
         price = self.cleaned_data.get("price")
         validate_price(price)
         return price
+
+
+class ProductModeratorForm(StyleFormMixin, forms.ModelForm):
+
+    class Meta:
+
+        model = Product
+        fields = ("name", "can_unpublish_product",)
