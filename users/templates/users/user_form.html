@@ -1,6 +1,6 @@
 {% extends 'catalog/base.html' %}
 
-{% block title %}Создание блога{% endblock %}
+{% block title %}Регистрация пользователя{% endblock %}
 
 {% block content %}
 <div class="container">
@@ -13,14 +13,8 @@
                         {{form.as_p}}
                         <div>
                             <button type="submit" class="btn btn-primary">
-                                {% if object %}
-                                Сохранить
-                                {% else %}
-                                Создать
-                                {% endif %}
+                                Зарегистрироваться
                             </button>
-                            <a class="btn btn-outline-secondary" href="{% url 'blog_app:blog_list' %}"
-                               role="button"> Назад </a>
                         </div>
                     </div>
                 </div>

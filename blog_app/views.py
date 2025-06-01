@@ -1,3 +1,4 @@
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse, reverse_lazy
 from django.views.generic import DetailView, ListView
 from django.views.generic.edit import CreateView, DeleteView, UpdateView
@@ -17,7 +18,7 @@ class BlogListView(ListView):
         return queryset.filter(publication_sign=True)
 
 
-class BlogDetailView(DetailView):
+class BlogDetailView(LoginRequiredMixin, DetailView):
     """Выводит представление отдельного объекта класса 'Blog'"""
 
     model = Blog
@@ -31,7 +32,7 @@ class BlogDetailView(DetailView):
         return self.blog
 
 
-class BlogCreateView(CreateView):
+class BlogCreateView(LoginRequiredMixin, CreateView):
     """Создаёт представление объекта класса 'Blog'"""
 
     model = Blog
@@ -39,7 +40,7 @@ class BlogCreateView(CreateView):
     success_url = reverse_lazy("blog_app:blog_list")
 
 
-class BlogUpdateView(UpdateView):
+class BlogUpdateView(LoginRequiredMixin, UpdateView):
     """Создаёт представление объекта класса 'Blog'"""
 
     model = Blog
@@ -51,7 +52,7 @@ class BlogUpdateView(UpdateView):
         return reverse("blog_app:blog_detail", args=[self.kwargs.get("pk")])
 
 
-class BlogDeleteView(DeleteView):
+class BlogDeleteView(LoginRequiredMixin, DeleteView):
     """Создаёт представление объекта класса 'Blog'"""
 
     model = Blog

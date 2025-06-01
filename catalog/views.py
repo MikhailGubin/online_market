@@ -1,3 +1,4 @@
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import HttpResponse
 from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse, reverse_lazy
@@ -45,7 +46,7 @@ from catalog.models import Product
 #     return render(request, "product_detail.html", context)
 
 
-class ProductCreateView(CreateView):
+class ProductCreateView(LoginRequiredMixin, CreateView):
     """Создаёт представление объекта класса 'Product'"""
 
     model = Product
@@ -60,7 +61,7 @@ class ProductListView(ListView):
     context_object_name = "products"
 
 
-class ProductDetailView(DetailView):
+class ProductDetailView(LoginRequiredMixin, DetailView):
     """Выводит представление отдельного объекта класса 'Product'"""
 
     model = Product
@@ -74,7 +75,7 @@ class ProductDetailView(DetailView):
         return self.product
 
 
-class ProductUpdateView(UpdateView):
+class ProductUpdateView(LoginRequiredMixin, UpdateView):
     """Создаёт представление объекта класса 'Product'"""
 
     model = Product
@@ -88,7 +89,7 @@ class ProductUpdateView(UpdateView):
         return reverse("catalog:product_detail", args=[self.kwargs.get("pk")])
 
 
-class ProductDeleteView(DeleteView):
+class ProductDeleteView(LoginRequiredMixin, DeleteView):
     """Создаёт представление объекта класса 'Product'"""
 
     model = Product

@@ -3,14 +3,9 @@ from django.conf.urls.static import static
 from django.urls import path
 
 from catalog.apps import CatalogConfig
-from catalog.views import (
-    ContactsView,
-    ProductCreateView,
-    ProductDeleteView,
-    ProductDetailView,
-    ProductListView,
-    ProductUpdateView,
-)
+from catalog.views import (ContactsView, ProductCreateView, ProductDeleteView,
+                           ProductDetailView, ProductListView,
+                           ProductUpdateView)
 
 app_name = CatalogConfig.name
 
@@ -24,6 +19,3 @@ urlpatterns = [
     path("<int:pk>/edit/", ProductUpdateView.as_view(), name="product_edit"),
     path("<int:pk>/delete/", ProductDeleteView.as_view(), name="product_delete"),
 ]
-
-if settings.DEBUG:
-    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
