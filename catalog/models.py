@@ -83,7 +83,6 @@ class Product(models.Model):
         on_delete=models.SET_NULL,
     )
 
-
     def __str__(self):
         return f"{self.name} из категории {self.category}"
 

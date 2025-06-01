@@ -45,4 +45,7 @@ class ProductModeratorForm(StyleFormMixin, forms.ModelForm):
     class Meta:
 
         model = Product
-        fields = ("name", "publish_product",)
+        fields = (
+            "name",
+            "publish_product",
+        )
