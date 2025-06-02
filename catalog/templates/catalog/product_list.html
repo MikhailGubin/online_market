@@ -26,12 +26,15 @@
                                 <a class="btn btn-outline-secondary btn-sm"
                                    href="{% url 'catalog:product_edit' product.pk %}"
                                    role="button"> Редактировать </a>
-                                {% endif %}
-
-                                {% if perms.catalog.can_unpublish_product and perms.catalog.can_delete_any_product or user == product.owner %}
                                 <a class="btn btn-outline-danger btn-sm"
                                    href="{% url 'catalog:product_delete' product.pk %}"
                                    role="button"> Удалить </a>
+                                {% endif %}
+
+                                {% if perms.catalog.can_unpublish_product and perms.catalog.can_delete_any_product %}
+                                <a class="btn btn-outline-danger btn-sm"
+                                   href="{% url 'catalog:product_unpublish' product.pk %}"
+                                   role="button"> Скрыть </a>
                                 {% endif %}
                             </div>
                         </div>

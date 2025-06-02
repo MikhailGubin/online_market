@@ -1,6 +1,6 @@
 {% extends 'catalog/base.html' %}
 
-{% block title %}Подтверждение удаления товара{% endblock %}
+{% block title %}Подтверждение изменения публикации товара{% endblock %}
 
 {% block content %}
 <div class="container">
@@ -8,12 +8,12 @@
         <div class="col">
             <form class="row" method="post" enctype="multipart/form-data" action="">
                 <div class="card">
-                    <p class="card-text">Вы уверены, что хотите удалить "{{object.name}}"?</p>
+                    <p class="card-text">Вы уверены, что хотите отменить публикацию "{{object.name}}"?</p>
                     <div class="card-body">
                         {% csrf_token %}
                         {{form.as_p}}
                         <div>
-                            <button type="submit" class="btn btn-danger">Удалить</button>
+                            <button type="submit" class="btn btn-danger">Отменить публикацию</button>
                             <a class="btn btn-outline-secondary" href="{% url 'catalog:products_list' %}"
                                role="button"> Назад </a>
                         </div>
