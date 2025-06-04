@@ -28,10 +28,10 @@
                                 <a class="btn btn-outline-danger btn-sm"
                                    href="{% url 'catalog:product_delete' product.pk %}"
                                    role="button"> Удалить </a>
+                                <a class="btn btn-outline-danger btn-sm"
+                                   href="{% url 'catalog:product_unpublish' product.pk %}"
+                                   role="button"> Скрыть </a>
                             </div>
-                            <small class="text-body-secondary">
-                                {{product.updated_at|date:"H:i:s d M Y"}}
-                            </small></div>
                     </div>
                 </div>
             </div>

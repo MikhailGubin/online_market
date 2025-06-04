@@ -1,4 +1,7 @@
 from django.db import models
+from django.db.models import ForeignKey
+
+from users.models import User
 
 
 class Category(models.Model):
@@ -66,6 +69,19 @@ class Product(models.Model):
         default=0,
         blank=True,
     )
+    publish_product = models.BooleanField(
+        verbose_name="Публикация на сайте",
+        default=False,
+        blank=True,
+    )
+    owner = models.ForeignKey(
+        User,
+        verbose_name="Поставщик",
+        help_text="Укажите поставщика товара",
+        blank=True,
+        null=True,
+        on_delete=models.SET_NULL,
+    )
 
     def __str__(self):
         return f"{self.name} из категории {self.category}"
@@ -80,4 +96,8 @@ class Product(models.Model):
             "created_at",
             "updated_at",
             "views_counter",
+        ]
+        permissions = [
+            ("can_unpublish_product", "Can unpublish product"),
+            ("can_delete_any_product", "Can delete any product"),
         ]

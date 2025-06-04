@@ -16,7 +16,7 @@ class ProductForm(StyleFormMixin, forms.ModelForm):
     class Meta:
 
         model = Product
-        exclude = ("views_counter",)
+        exclude = ("views_counter", "owner", "publish_product")
 
     def clean_name(self):
         name = self.cleaned_data.get("name")
@@ -38,3 +38,11 @@ class ProductForm(StyleFormMixin, forms.ModelForm):
         price = self.cleaned_data.get("price")
         validate_price(price)
         return price
+
+
+class ProductModeratorForm(StyleFormMixin, forms.ModelForm):
+
+    class Meta:
+
+        model = Product
+        fields = ("name", "publish_product")
