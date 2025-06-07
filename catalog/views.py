@@ -8,6 +8,8 @@ from django.views.generic.edit import CreateView, DeleteView, UpdateView
 
 from catalog.forms import ProductForm, ProductModeratorForm
 from catalog.models import Product
+from catalog.services import get_product_from_cache
+
 
 # def home(request):
 #     """Контроллер для главной страницы"""
@@ -69,6 +71,7 @@ class ProductListView(ListView):
     context_object_name = "products"
 
     def get_queryset(self):
+        """ Выводит на экран только продукты с активным статусом публикации """
         queryset = super().get_queryset()
         user = self.request.user
 
