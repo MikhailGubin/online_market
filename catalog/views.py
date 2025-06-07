@@ -1,4 +1,5 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.core.cache import cache
 from django.core.exceptions import PermissionDenied
 from django.http import HttpResponse, HttpResponseForbidden
 from django.shortcuts import get_object_or_404, redirect, render
@@ -9,7 +10,6 @@ from django.views.generic.edit import CreateView, DeleteView, UpdateView
 from catalog.forms import ProductForm, ProductModeratorForm
 from catalog.models import Product
 from catalog.services import ProductService
-from django.core.cache import cache
 
 # def home(request):
 #     """Контроллер для главной страницы"""
@@ -71,7 +71,7 @@ class ProductListView(ListView):
     context_object_name = "products"
 
     def get_queryset(self):
-        """ Выводит на экран только продукты с активным статусом публикации """
+        """Выводит на экран только продукты с активным статусом публикации"""
 
         user = self.request.user
         if user.has_perm("catalog.can_unpublish_product"):
@@ -170,14 +170,13 @@ class ProductFromCategoryView(ListView):
     template_name = "catalog/products_from_category.html"
 
     def get_queryset(self):
-        """ Использует низкоуровневое кэширование """
+        """Использует низкоуровневое кэширование"""
         return ProductService.get_product_from_cache()
 
-
     def get_context_data(self, **kwargs):
-        """ Выводит на экран только продукты одной категории """
+        """Выводит на экран только продукты одной категории"""
         context = super().get_context_data(**kwargs)
-        category_id = self.request.GET.get('category_id')
+        category_id = self.request.GET.get("category_id")
         if category_id:
-            context['products'] = ProductService.get_products_from_category(category_id)
+            context["products"] = ProductService.get_products_from_category(category_id)
         return context

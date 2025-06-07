@@ -13,11 +13,8 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 import os
 from pathlib import Path
 
-from django.conf.global_settings import (
-    AUTH_USER_MODEL,
-    LOGIN_REDIRECT_URL,
-    LOGOUT_REDIRECT_URL,
-)
+from django.conf.global_settings import (AUTH_USER_MODEL, LOGIN_REDIRECT_URL,
+                                         LOGOUT_REDIRECT_URL)
 from dotenv import load_dotenv
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -160,12 +157,12 @@ EMAIL_HOST_PASSWORD = os.getenv("EMAIL_HOST_PASSWORD")
 SERVER_EMAIL = EMAIL_HOST_USER
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 
-CACHE_ENABLED = os.getenv('CACHE_ENABLED', False) == "True"
+CACHE_ENABLED = os.getenv("CACHE_ENABLED", False) == "True"
 
 if CACHE_ENABLED:
     CACHES = {
-        'default': {
-                'BACKEND': 'django.core.cache.backends.redis.RedisCache',
-                "LOCATION": os.getenv('REDIS_HOST'),
-            }
+        "default": {
+            "BACKEND": "django.core.cache.backends.redis.RedisCache",
+            "LOCATION": os.getenv("REDIS_HOST"),
         }
+    }

@@ -1,13 +1,13 @@
 from django.core.cache import cache
 
+from catalog.models import Category, Product
 from config.settings import CACHE_ENABLED
-from catalog.models import Product, Category
 
 
 class ProductService:
     @staticmethod
     def get_product_from_cache():
-        """ Получает данные по продуктам из кэша. Если кэш пуст, получает данные из БД """
+        """Получает данные по продуктам из кэша. Если кэш пуст, получает данные из БД"""
         if not CACHE_ENABLED:
             return Product.objects.all()
         key = "product_list"
@@ -20,5 +20,5 @@ class ProductService:
 
     @staticmethod
     def get_products_from_category(category_id: int):
-        """ Отдаёт данные по продуктам из заданной категории """
+        """Отдаёт данные по продуктам из заданной категории"""
         return Product.objects.filter(category_id=category_id)
