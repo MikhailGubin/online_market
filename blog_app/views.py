@@ -41,19 +41,19 @@ class BlogCreateView(LoginRequiredMixin, CreateView):
 
 
 class BlogUpdateView(LoginRequiredMixin, UpdateView):
-    """Создаёт представление объекта класса 'Blog'"""
+    """Редактирует представление объекта класса 'Blog'"""
 
     model = Blog
     form_class = BlogForm
     success_url = reverse_lazy("blog_app:blog_list")
 
     def get_success_url(self):
-        """Перенаправлять пользователя на просмотр этой статьи после успешного редактирования записи"""
+        """Перенаправляет пользователя на просмотр этой статьи после успешного редактирования записи"""
         return reverse("blog_app:blog_detail", args=[self.kwargs.get("pk")])
 
 
 class BlogDeleteView(LoginRequiredMixin, DeleteView):
-    """Создаёт представление объекта класса 'Blog'"""
+    """Удаляет представление объекта класса 'Blog'"""
 
     model = Blog
     success_url = reverse_lazy("blog_app:blog_list")
