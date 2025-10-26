@@ -1,10 +1,9 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.core.cache import cache
 from django.core.exceptions import PermissionDenied
-from django.http import HttpResponse, HttpResponseForbidden
-from django.shortcuts import get_object_or_404, redirect, render
+from django.http import HttpResponseForbidden
+from django.shortcuts import get_object_or_404, redirect
 from django.urls import reverse, reverse_lazy
-from django.views.generic import DetailView, ListView, TemplateView, View
+from django.views.generic import DetailView, ListView, TemplateView
 from django.views.generic.edit import CreateView, DeleteView, UpdateView
 
 from catalog.forms import ProductForm, ProductModeratorForm
